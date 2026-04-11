@@ -57,9 +57,9 @@ describe.each([
   });
   it("should preserve no string entries", async () => {
     const bundle = generateBundle({
-      // @ts-expect-error
       input: [
         "test/fixture/**/*.js",
+        // @ts-expect-error
         {
           test: "path/to/test.js",
         },
