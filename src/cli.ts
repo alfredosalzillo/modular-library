@@ -1,7 +1,10 @@
 #!/usr/bin/env node
-import path from "node:path";
 import { Command, CommanderError } from "commander";
-import { type ExportValidationIssue, validatePackageExports, } from "@/cli/check";
+import path from "node:path";
+import {
+  type ExportValidationIssue,
+  validatePackageExports,
+} from "@/cli/check";
 
 type StdoutLike = Pick<typeof process.stdout, "write">;
 type StderrLike = Pick<typeof process.stderr, "write">;
@@ -40,7 +43,11 @@ const createProgram = ({ stdout, stderr, cwd }: Required<RunCliOptions>) => {
     .command("check")
     .description("Validate that package.json exports exist inside out-dir")
     .option("--package-json <path>", "Path to package.json", "./package.json")
-    .option("--out-dir <path>", "Output directory to validate against", "./dist")
+    .option(
+      "--out-dir <path>",
+      "Output directory to validate against",
+      "./dist",
+    )
     .action((options: { packageJson: string; outDir: string }) => {
       const packageJsonPath = path.resolve(cwd, options.packageJson);
       const outDir = path.resolve(cwd, options.outDir);

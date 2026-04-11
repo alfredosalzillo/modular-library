@@ -1,7 +1,7 @@
-import { rollup, RollupOptions } from "rollup";
 import importJson from "@rollup/plugin-json";
-import path from "node:path";
+import { type RollupOptions, rollup } from "rollup";
 import modularLibrary from "./plugin";
+import path from "node:path";
 
 const expectedOutput = ["fixture/input1.js", "fixture/input2.js"].sort();
 

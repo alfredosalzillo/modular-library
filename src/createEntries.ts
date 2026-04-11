@@ -1,4 +1,4 @@
-import { globSync, GlobOptions } from "node:fs";
+import { type GlobOptions, globSync } from "node:fs";
 import path from "node:path";
 
 const isString = (value: unknown): value is string => typeof value === "string";
@@ -41,7 +41,9 @@ const createEntries = (
         name,
       );
       const isRelative = !filePath.startsWith(`../`);
-      const relativeFilePath = isRelative ? filePath : path.relative(`./`, name);
+      const relativeFilePath = isRelative
+        ? filePath
+        : path.relative(`./`, name);
       return [
         outputFileName(
           options?.transformOutputPath

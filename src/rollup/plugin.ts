@@ -1,5 +1,5 @@
 import type { Plugin } from "rollup";
-import createEntries, { CreateEntriesOptions } from "@/createEntries";
+import createEntries, { type CreateEntriesOptions } from "@/createEntries";
 
 const pluginName = "modular-library/rollup";
 

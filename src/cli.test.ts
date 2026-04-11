@@ -25,7 +25,9 @@ describe("runCli", () => {
     const exitCode = runCli(["--help"], { stdout, stderr });
 
     expect(exitCode).toBe(0);
-    expect(stdout.value()).toContain("Usage: modular-library [options] [command]");
+    expect(stdout.value()).toContain(
+      "Usage: modular-library [options] [command]",
+    );
     expect(stderr.value()).toBe("");
   });
 
