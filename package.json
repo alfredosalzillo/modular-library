@@ -1,7 +1,10 @@
 {
   "name": "modular-library",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
+  "bin": {
+    "modular-library": "./dist/cli.cjs.js"
+  },
   "files": [
     "dist"
   ],
@@ -53,6 +56,9 @@
   },
   "homepage": "https://github.com/alfredosalzillo/modular-library#readme",
   "description": "Plugins for Vite, Rollup, and Rolldown to build modular multi-entry TypeScript libraries.",
+  "dependencies": {
+    "commander": "^14.0.1"
+  },
   "devDependencies": {
     "@biomejs/biome": "^2.4.11",
     "@rollup/plugin-json": "^6.1.0",

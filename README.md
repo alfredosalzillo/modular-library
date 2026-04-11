@@ -163,6 +163,29 @@ To make your package consumable with subpath imports, add an `exports` map in yo
 }
 ```
 
+## CLI
+
+You can also use `modular-library` as a CLI with `npx`.
+
+### Check exports
+
+Validate that all `package.json` export targets exist and are inside your output directory:
+
+```bash
+npx modular-library check
+```
+
+Named options:
+
+- `--package-json` path to package manifest (default: `./package.json`)
+- `--out-dir` output directory to validate against (default: `./dist`)
+
+Example:
+
+```bash
+npx modular-library check --package-json ./package.json --out-dir ./dist
+```
+
 ## Development
 
 ```bash

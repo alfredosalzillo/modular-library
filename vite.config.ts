@@ -19,6 +19,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: {
+        cli: resolve(__dirname, "src/cli.ts"),
         "rolldown/index": resolve(__dirname, "src/rolldown/index.ts"),
         "rollup/index": resolve(__dirname, "src/rollup/index.ts"),
         "vite/index": resolve(__dirname, "src/vite/index.ts"),
@@ -30,7 +31,14 @@ export default defineConfig({
       output: {
         chunkFileNames: "chunks/[name].js",
       },
-      external: ["node:path", "node:fs"],
+      external: [
+        "commander",
+        "node:path",
+        "node:fs",
+        "node:process",
+        "node:child_process",
+        "node:events",
+      ],
     },
   },
 });
