@@ -1,4 +1,4 @@
-import { globSync, type GlobOptionsWithoutFileTypes } from "node:fs";
+import { globSync, GlobOptions } from "node:fs";
 import path from "node:path";
 
 const isString = (value: unknown): value is string => typeof value === "string";
@@ -6,7 +6,7 @@ const outputFileName = (filePath: string) =>
   filePath.replace(/\.[^/.]+$/, "").replace(/\\/g, "/");
 
 export type CreateEntryInput = string | string[] | Record<string, string>;
-type CreateEntriesGlobOptions = GlobOptionsWithoutFileTypes;
+type CreateEntriesGlobOptions = GlobOptions;
 
 export type CreateEntriesOptions = {
   glob?: CreateEntriesGlobOptions;
@@ -31,23 +31,26 @@ const createEntries = (
   // get files from the strings and return as entries Object
   const entries = globSync(normalizedGlobs, {
     ...options?.glob,
-    withFileTypes: false,
-  }).map((name) => {
-    const filePath = path.relative(
-      options?.relative ?? defaultOptions.relative,
-      name,
-    );
-    const isRelative = !filePath.startsWith(`../`);
-    const relativeFilePath = isRelative ? filePath : path.relative(`./`, name);
-    return [
-      outputFileName(
-        options?.transformOutputPath
-          ? options.transformOutputPath(relativeFilePath, name)
-          : relativeFilePath,
-      ),
-      name,
-    ];
-  });
+    withFileTypes: true,
+  })
+    .filter((dirent) => dirent.isFile())
+    .map((dirent) => {
+      const name = path.join(dirent.parentPath, dirent.name);
+      const filePath = path.relative(
+        options?.relative ?? defaultOptions.relative,
+        name,
+      );
+      const isRelative = !filePath.startsWith(`../`);
+      const relativeFilePath = isRelative ? filePath : path.relative(`./`, name);
+      return [
+        outputFileName(
+          options?.transformOutputPath
+            ? options.transformOutputPath(relativeFilePath, name)
+            : relativeFilePath,
+        ),
+        name,
+      ];
+    });
   return Object.assign(
     {},
     Object.fromEntries(entries),
