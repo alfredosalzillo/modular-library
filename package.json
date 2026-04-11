@@ -1,9 +1,14 @@
 {
   "name": "modular-library",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vite build",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "test": "vitest run --passWithNoTests"
   },
   "keywords": [
     "modular",
@@ -11,9 +16,37 @@
     "generator",
     "scaffolding",
     "architecture",
-    "utility"
+    "utility",
+    "typescript",
+    "vite"
   ],
-  "author": "",
-  "license": "ISC",
-  "description": "Utility library to generate modular libraries"
+  "author": "alfredo salzillo <alfredosalzillo93@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alfredosalzillo/modular-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alfredosalzillo/modular-library/issues"
+  },
+  "funding": {
+    "url": "https://github.com/sponsors/alfredosalzillo"
+  },
+  "homepage": "https://github.com/alfredosalzillo/modular-library#readme",
+  "description": "Utility library to generate modular libraries",
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.11",
+    "@types/node": "^25.6.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "typescript": "^6.0.2",
+    "unplugin-dts": "^1.0.0-beta.6",
+    "vite": "^8.0.8",
+    "vitest": "^4.1.4"
+  },
+  "volta": {
+    "node": "25.9.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
 }
