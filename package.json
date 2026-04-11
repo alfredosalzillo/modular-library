@@ -29,7 +29,9 @@
     "build": "vite build",
     "lint": "biome check .",
     "format": "biome format --write .",
-    "test": "vitest run --coverage"
+    "test": "vitest run --coverage",
+    "check-exports": "node ./dist/cli.cjs.js check",
+    "prepare": "npm run build && npm run lint && npm run check-exports"
   },
   "keywords": [
     "modular-library",
