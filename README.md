@@ -1,6 +1,6 @@
-# proced
+# modular-library
 
-`proced` is a utility library for generating modular libraries.
+`modular-library` is a utility library for generating modular libraries.
 
 ## What is a modular library?
 
@@ -13,7 +13,7 @@ This approach helps you:
 - reduce coupling between features,
 - improve scalability as the codebase grows.
 
-With `proced`, the goal is to make the creation of this kind of modular architecture faster and more consistent.
+With `modular-library`, the goal is to make the creation of this kind of modular architecture faster and more consistent.
 
 ## Installation
 
