@@ -25,6 +25,8 @@ With `modular-library`, the goal is to make the creation of this kind of modular
 
 ## Installation
 
+> **Node.js requirement:** This library supports only Node.js `22` or newer.
+
 ```bash
 npm install modular-library
 ```
