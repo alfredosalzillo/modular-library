@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+import { globSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 interface ExportObject {
@@ -131,7 +131,7 @@ export const validatePackageExports = ({
       return;
     }
 
-    if (!existsSync(resolvedTarget)) {
+    if (globSync(resolvedTarget).length === 0) {
       issues.push({
         ...target,
         resolvedTarget,
