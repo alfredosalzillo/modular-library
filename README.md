@@ -18,7 +18,7 @@ With `proced`, the goal is to make the creation of this kind of modular architec
 ## Installation
 
 ```bash
-npm install proced
+npm install modular-library
 ```
 
 ## Usage
