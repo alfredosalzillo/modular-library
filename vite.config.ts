@@ -9,6 +9,7 @@ export default defineConfig({
     dts({
       copyDtsFiles: true,
       outDirs: ["dist"],
+      exclude: ["src/**/*.test.ts"],
       beforeWriteFile: (filePath, content) => ({
         filePath: filePath.replace(/([\\/])dist\1src\1/, "$1dist$1"),
         content,
@@ -18,17 +19,18 @@ export default defineConfig({
   build: {
     lib: {
       entry: {
-        index: resolve(__dirname, "src/index.ts"),
+        "rolldown/index": resolve(__dirname, "src/rolldown/index.ts"),
+        "rollup/index": resolve(__dirname, "src/rollup/index.ts"),
+        "vite/index": resolve(__dirname, "src/vite/index.ts"),
       },
       formats: ["es", "cjs"],
       fileName: (format, entryName) => `${entryName}.${format}.js`,
     },
-    rollupOptions: {
+    rolldownOptions: {
       output: {
-        preserveModules: true,
-        preserveModulesRoot: "src",
+        chunkFileNames: "chunks/[name].js",
       },
-      external: [],
+      external: ["node:path", "node:fs"],
     },
   },
 });

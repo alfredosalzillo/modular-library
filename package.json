@@ -1,24 +1,40 @@
 {
   "name": "modular-library",
   "version": "0.0.1",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
+  "private": false,
+  "exports": {
+    "./rollup": {
+      "types": "./dist/rollup/index.d.ts",
+      "import": "./dist/rollup/index.es.js",
+      "require": "./dist/rollup/index.cjs.js"
+    },
+    "./rolldown": {
+      "types": "./dist/rolldown/index.d.ts",
+      "import": "./dist/rolldown/index.es.js",
+      "require": "./dist/rolldown/index.cjs.js"
+    },
+    "./vite": {
+      "types": "./dist/vite/index.d.ts",
+      "import": "./dist/vite/index.es.js",
+      "require": "./dist/vite/index.cjs.js"
+    }
+  },
   "scripts": {
     "build": "vite build",
     "lint": "biome check .",
     "format": "biome format --write .",
-    "test": "vitest run --passWithNoTests"
+    "test": "vitest run --coverage"
   },
   "keywords": [
-    "modular",
-    "library",
-    "generator",
-    "scaffolding",
-    "architecture",
-    "utility",
+    "modular-library",
+    "vite-plugin",
+    "rollup-plugin",
+    "rolldown-plugin",
+    "multi-entry",
+    "multi-input",
+    "tree-shaking",
     "typescript",
-    "vite"
+    "bundler"
   ],
   "author": "alfredo salzillo <alfredosalzillo93@gmail.com>",
   "license": "MIT",
@@ -33,11 +49,15 @@
     "url": "https://github.com/sponsors/alfredosalzillo"
   },
   "homepage": "https://github.com/alfredosalzillo/modular-library#readme",
-  "description": "Utility library to generate modular libraries",
+  "description": "Plugins for Vite, Rollup, and Rolldown to build modular multi-entry TypeScript libraries.",
   "devDependencies": {
     "@biomejs/biome": "^2.4.11",
+    "@rollup/plugin-json": "^6.1.0",
     "@types/node": "^25.6.0",
     "@vitejs/plugin-react": "^6.0.1",
+    "@vitest/coverage-v8": "^4.1.4",
+    "rolldown": "^1.0.0-rc.15",
+    "rollup": "^4.60.1",
     "typescript": "^6.0.2",
     "unplugin-dts": "^1.0.0-beta.6",
     "vite": "^8.0.8",
@@ -47,6 +67,6 @@
     "node": "25.9.0"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=22.0.0"
   }
 }
