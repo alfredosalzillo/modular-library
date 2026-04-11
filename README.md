@@ -121,6 +121,8 @@ npm run build
 npm test
 ```
 
+To test GitHub workflows locally, you can use [`act`](https://nektosact.com/).
+
 ## License
 
 ISC

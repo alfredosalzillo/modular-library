@@ -20,6 +20,7 @@ This file provides context and instructions for AI coding agents working on this
 2.  **Build**: Before submitting, ensure the project compiles by running `npm run build`.
 3.  **Validate**: Run relevant tests with `npm test` when behavior changes.
 4.  **Code Style**: Follow the existing style and naming patterns in the codebase.
+5.  **GitHub Workflows**: To test workflows locally, use [`act`](https://nektosact.com/).
 
 ## Temporary Files
 
