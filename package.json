@@ -1,0 +1,19 @@
+{
+  "name": "modular-library",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "modular",
+    "library",
+    "generator",
+    "scaffolding",
+    "architecture",
+    "utility"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "Utility library to generate modular libraries"
+}

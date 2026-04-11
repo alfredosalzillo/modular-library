@@ -1,0 +1,12 @@
+node_modules
+package-lock.json
+coverage
+yarn.lock
+.DS_Store
+.env
+.vscode
+*.log
+npm-debug.log*
+.idea
+dist
+.ai-tmp
