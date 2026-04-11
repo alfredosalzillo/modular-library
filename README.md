@@ -1,6 +1,20 @@
 # modular-library
 
+![npm version](https://img.shields.io/npm/v/modular-library)
+![node version](https://img.shields.io/badge/node-%3E%3D22-blue)
+![license](https://img.shields.io/github/license/alfredosalzillo/modular-library)
+
 `modular-library` is a utility library for generating modular libraries.
+
+## Why
+
+Building a modular library manually is usually tedious and error-prone:
+
+- keeping `package.json` `exports` in sync with your generated files,
+- wiring and maintaining complex glob-based inputs,
+- avoiding output path mistakes when your source tree grows.
+
+`modular-library` is a **zero-config** way to generate modular outputs for `vite`, `rollup`, and `rolldown` with predictable structure.
 
 ## What is a modular library?
 
@@ -22,6 +36,28 @@ Typical examples of modular libraries include:
 - SDKs exposing feature-based modules (for example `@acme/sdk/auth`, `@acme/sdk/storage`).
 
 With `modular-library`, the goal is to make the creation of this kind of modular architecture faster and more consistent.
+
+### Why this is different from standard library mode
+
+| Approach | Example import | What happens |
+| --- | --- | --- |
+| Standard library mode | `import { button } from "my-lib";` | Requires evaluating the full package entry. |
+| Modular library (`modular-library`) | `import button from "my-lib/button";` | Loads only the `button` module code. |
+
+### Before vs. After output
+
+```text
+# Before (standard single-entry build)
+dist/
+  index.js
+
+# After (modular output with modular-library)
+dist/
+  button.js
+  modal.js
+  utils/
+    formatDate.js
+```
 
 ## Installation
 
@@ -89,9 +125,11 @@ export default {
 
 All plugin variants support the same options:
 
-- `relative` (default: `"src/"`): base path removed from generated output keys.
-- `glob`: [`fs.globSync`](https://nodejs.org/api/fs.html#fsglobsyncpattern-options) options.
-- `transformOutputPath(outputPath, inputPath)`: customize each generated output path.
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `relative` | `string` | `"src/"` | Base path removed from generated output keys. |
+| `glob` | [`GlobOptions`](https://nodejs.org/api/fs.html#fsglobsyncpattern-options) | `undefined` | Options forwarded to `fs.globSync`. |
+| `transformOutputPath` | `(outputPath: string, inputPath: string) => string` | `undefined` | Customize each generated output path. |
 
 Example with options:
 
@@ -111,6 +149,18 @@ export default {
     }),
   ],
 };
+```
+
+### Exports tip
+
+To make your package consumable with subpath imports, add an `exports` map in your `package.json`:
+
+```json
+{
+  "exports": {
+    "./*": "./dist/*.js"
+  }
+}
 ```
 
 ## Development
