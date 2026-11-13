@@ -1,6 +1,6 @@
 {
   "name": "modular-library",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": false,
   "bin": {
     "modular-library": "./dist/cli.cjs.js"
@@ -11,17 +11,17 @@
   "exports": {
     "./rollup": {
       "types": "./dist/rollup/index.d.ts",
-      "import": "./dist/rollup/index.es.js",
+      "import": "./dist/rollup/index.es.mjs",
       "require": "./dist/rollup/index.cjs.js"
     },
     "./rolldown": {
       "types": "./dist/rolldown/index.d.ts",
-      "import": "./dist/rolldown/index.es.js",
+      "import": "./dist/rolldown/index.es.mjs",
       "require": "./dist/rolldown/index.cjs.js"
     },
     "./vite": {
       "types": "./dist/vite/index.d.ts",
-      "import": "./dist/vite/index.es.js",
+      "import": "./dist/vite/index.es.mjs",
       "require": "./dist/vite/index.cjs.js"
     }
   },
