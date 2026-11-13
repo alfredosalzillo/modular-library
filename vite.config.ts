@@ -24,13 +24,20 @@ export default defineConfig({
         "rollup/index": resolve(__dirname, "src/rollup/index.ts"),
         "vite/index": resolve(__dirname, "src/vite/index.ts"),
       },
-      formats: ["es", "cjs"],
-      fileName: (format, entryName) => `${entryName}.${format}.js`,
     },
     rolldownOptions: {
-      output: {
-        chunkFileNames: "chunks/[name].js",
-      },
+      output: [
+        {
+          format: "es",
+          entryFileNames: "[name].es.mjs",
+          chunkFileNames: "chunks/[name].mjs",
+        },
+        {
+          format: "cjs",
+          entryFileNames: "[name].cjs.js",
+          chunkFileNames: "chunks/[name].cjs",
+        },
+      ],
       external: [
         "commander",
         "node:path",
